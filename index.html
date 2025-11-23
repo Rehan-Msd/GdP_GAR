@@ -17,6 +17,10 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 
+    <!-- MathJax pour les formules mathématiques (AJOUTÉ) -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
     <script>
         tailwind.config = {
             theme: {
@@ -245,8 +249,9 @@
                         La Valeur Liquidative (VL) est calculée quotidiennement selon la formule standard de l'AMF.
                     </p>
                 </div>
+                <!-- La formule s'affichera désormais correctement grâce au script MathJax ajouté en haut -->
                 <div class="mt-6 md:mt-0 font-mono bg-white/10 p-4 rounded-lg text-lg">
-                    $ VL_{t} = \frac{\text{Actif Net Total}_{t}}{\text{Nombre de Parts}_{t}} $
+                    $$ VL_{t} = \frac{\text{Actif Net Total}_{t}}{\text{Nombre de Parts}_{t}} $$
                 </div>
             </div>
         </div>
