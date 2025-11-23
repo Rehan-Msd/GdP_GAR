@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fonds ESG Avenir Durable - Présentation Investisseur</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Chart.js pour les graphiques -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Font Awesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'esg-dark': '#0f172a',
+                        'esg-green': '#10b981',
+                        'esg-blue': '#0ea5e9',
+                        'esg-light': '#f8fafc',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Styles */
+        .gradient-text {
+            background: linear-gradient(to right, #10b981, #0ea5e9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .risk-box {
+            transition: all 0.3s ease;
+        }
+        .risk-box.active {
+            transform: scale(1.1);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            font-weight: bold;
+            color: white;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-panel shadow-sm transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0 flex items-center gap-2">
+                    <i class="fa-solid fa-leaf text-esg-green text-2xl"></i>
+                    <span class="font-serif text-xl font-bold text-slate-800">ESG Avenir <span class="text-esg-green">Durable</span></span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-slate-600 hover:text-esg-green font-medium transition">Accueil</a>
+                    <a href="#context" class="text-slate-600 hover:text-esg-green font-medium transition">Contexte</a>
+                    <a href="#fund" class="text-slate-600 hover:text-esg-green font-medium transition">Le Fonds</a>
+                    <a href="#allocation" class="text-slate-600 hover:text-esg-green font-medium transition">Allocation</a>
+                    <a href="#risk" class="text-slate-600 hover:text-esg-green font-medium transition">Risques</a>
+                </div>
+                <a href="#contact" class="bg-esg-dark text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-esg-green transition shadow-lg">
+                    Souscrire
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-slate-900/90 to-slate-800/80 z-10"></div>
+        <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" class="absolute inset-0 w-full h-full object-cover" alt="Montagnes et Nature">
+        
+        <div class="relative z-20 text-center px-4 max-w-4xl mx-auto animate-fade-in-up">
+            <div class="inline-block px-3 py-1 mb-4 text-xs font-semibold tracking-wider text-esg-green uppercase bg-esg-green/10 rounded-full border border-esg-green/20">
+                Unité de Compte • Master MBFA
+            </div>
+            <h1 class="text-5xl md:text-7xl font-serif font-bold text-white mb-6 leading-tight">
+                Investir aujourd'hui pour <br>
+                <span class="gradient-text">le monde de demain.</span>
+            </h1>
+            <p class="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
+                Une gestion active combinant performance financière et critères ESG rigoureux, modélisée par des techniques quantitatives avancées (EGARCH).
+            </p>
+            <div class="flex justify-center gap-4">
+                <a href="#fund" class="bg-esg-green text-white px-8 py-3 rounded-full font-semibold hover:bg-emerald-600 transition shadow-lg shadow-emerald-500/30">
+                    Découvrir le Fonds
+                </a>
+                <a href="#allocation" class="bg-white/10 backdrop-blur-md border border-white/20 text-white px-8 py-3 rounded-full font-semibold hover:bg-white/20 transition">
+                    Voir les Actifs
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gérants & Vision -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-serif font-bold text-slate-900 mb-4">L'Équipe de Gestion</h2>
+                <p class="text-slate-600 max-w-2xl mx-auto">Une expertise combinant analyse fondamentale et modélisation quantitative.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card Gérant 1 -->
+                <div class="bg-slate-50 p-6 rounded-2xl shadow-sm hover:shadow-md transition text-center group border border-slate-100">
+                    <div class="w-24 h-24 mx-auto rounded-full bg-slate-200 mb-4 overflow-hidden relative">
+                         <img src="https://ui-avatars.com/api/?name=Victor+G&background=0f172a&color=fff" alt="Victor" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900">Victor Gonzalez Arroyo</h3>
+                    <p class="text-esg-green text-sm font-semibold mb-3">Head of Portfolio Management</p>
+                    <p class="text-slate-500 text-sm">Spécialiste en allocation d'actifs et modélisation des risques de marché (EGARCH).</p>
+                </div>
+                <!-- Card Gérant 2 (Mock) -->
+                <div class="bg-slate-50 p-6 rounded-2xl shadow-sm hover:shadow-md transition text-center group border border-slate-100">
+                    <div class="w-24 h-24 mx-auto rounded-full bg-slate-200 mb-4 overflow-hidden relative">
+                        <img src="https://ui-avatars.com/api/?name=Equipe+Inv&background=10b981&color=fff" alt="Equipe" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900">Comité d'Investissement</h3>
+                    <p class="text-esg-green text-sm font-semibold mb-3">Stratégie & Sélection</p>
+                    <p class="text-slate-500 text-sm">Sélection rigoureuse des valeurs selon les critères SFDR Article 8/9.</p>
+                </div>
+                 <!-- Vision -->
+                 <div class="bg-esg-dark p-6 rounded-2xl shadow-xl text-white flex flex-col justify-center relative overflow-hidden">
+                    <div class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-esg-green/20 rounded-full blur-2xl"></div>
+                    <h3 class="text-xl font-bold mb-4"><i class="fa-solid fa-bullseye text-esg-green mr-2"></i> Notre Philosophie</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        "Nous croyons que la performance future ne peut se dissocier de la durabilité. Notre fonds vise à capter la croissance des entreprises leaders de la transition énergétique tout en maîtrisant la volatilité."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scénario Économique & Opportunité -->
+    <section id="context" class="py-20 bg-slate-50 border-y border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2">
+                    <h2 class="text-3xl font-serif font-bold text-slate-900 mb-6">Contexte de Marché : <br><span class="text-esg-blue">Pourquoi maintenant ?</span></h2>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mt-1">
+                                <i class="fa-solid fa-arrow-trend-up text-esg-blue"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-semibold text-slate-800">Inflation & Taux</h4>
+                                <p class="text-slate-600 text-sm">Dans un environnement de taux stabilisés, les actions de qualité ("Quality Growth") retrouvent de l'attrait.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mt-1">
+                                <i class="fa-solid fa-solar-panel text-esg-green"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-semibold text-slate-800">Transition Énergétique</h4>
+                                <p class="text-slate-600 text-sm">Les plans de relance (Green Deal UE, IRA USA) injectent des milliards, favorisant nos valeurs cibles.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center mt-1">
+                                <i class="fa-solid fa-chart-pie text-purple-500"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-semibold text-slate-800">Volatilité Maîtrisée</h4>
+                                <p class="text-slate-600 text-sm">Notre modèle EGARCH anticipe les chocs de volatilité pour ajuster l'exposition dynamiquement.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="md:w-1/2 relative">
+                    <div class="absolute inset-0 bg-esg-green/20 rounded-3xl transform rotate-3"></div>
+                    <div class="relative bg-white p-8 rounded-3xl shadow-xl">
+                        <canvas id="macroChart"></canvas>
+                        <p class="text-center text-xs text-slate-400 mt-2">Croissance relative du secteur ESG vs Monde (Simulé)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ID Card Fonds -->
+    <section id="fund" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-serif font-bold text-slate-900">Carte d'Identité du Fonds</h2>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="p-4 border rounded-xl bg-slate-50">
+                    <p class="text-xs text-slate-500 uppercase font-bold">Forme Juridique</p>
+                    <p class="text-lg font-semibold text-slate-900">FCP (OPCVM)</p>
+                </div>
+                <div class="p-4 border rounded-xl bg-slate-50">
+                    <p class="text-xs text-slate-500 uppercase font-bold">Classification</p>
+                    <p class="text-lg font-semibold text-slate-900">Actions Internationales</p>
+                </div>
+                 <div class="p-4 border rounded-xl bg-slate-50">
+                    <p class="text-xs text-slate-500 uppercase font-bold">Classification SFDR</p>
+                    <p class="text-lg font-semibold text-esg-green">Article 8</p>
+                </div>
+                <div class="p-4 border rounded-xl bg-slate-50">
+                    <p class="text-xs text-slate-500 uppercase font-bold">Code ISIN</p>
+                    <p class="text-lg font-semibold text-slate-900 font-mono">FR00MBFA2025</p>
+                </div>
+                <div class="p-4 border rounded-xl bg-slate-50">
+                    <p class="text-xs text-slate-500 uppercase font-bold">Horizon</p>
+                    <p class="text-lg font-semibold text-slate-900">> 5 ans</p>
+                </div>
+                <div class="p-4 border rounded-xl bg-slate-50">
+                    <p class="text-xs text-slate-500 uppercase font-bold">VL Initiale</p>
+                    <p class="text-lg font-semibold text-slate-900">100,00 €</p>
+                </div>
+                <div class="p-4 border rounded-xl bg-slate-50">
+                    <p class="text-xs text-slate-500 uppercase font-bold">Frais de Gestion</p>
+                    <p class="text-lg font-semibold text-slate-900">1.50% TTC</p>
+                </div>
+                <div class="p-4 border rounded-xl bg-slate-50">
+                    <p class="text-xs text-slate-500 uppercase font-bold">Investisseur Cible</p>
+                    <p class="text-lg font-semibold text-slate-900">Profil Équilibré/Dyn.</p>
+                </div>
+            </div>
+
+            <!-- VL Calculator Logic Visualization -->
+            <div class="mt-12 bg-slate-900 text-white rounded-2xl p-8 flex flex-col md:flex-row items-center justify-between">
+                <div>
+                    <h3 class="text-2xl font-bold mb-2">Méthodologie VL</h3>
+                    <p class="text-slate-400 text-sm max-w-md">
+                        La Valeur Liquidative (VL) est calculée quotidiennement selon la formule standard de l'AMF.
+                    </p>
+                </div>
+                <div class="mt-6 md:mt-0 font-mono bg-white/10 p-4 rounded-lg text-lg">
+                    $$ VL_{t} = \frac{\text{Actif Net Total}_{t}}{\text{Nombre de Parts}_{t}} $$
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Allocation Section (UPDATED) -->
+    <section id="allocation" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-serif font-bold text-slate-900 mb-8 text-center">Allocation du Portefeuille</h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+                <!-- Sector Chart (Doughnut) -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm flex flex-col items-center justify-center">
+                    <h4 class="text-lg font-semibold mb-4 text-slate-700 flex items-center">
+                        <i class="fa-solid fa-chart-pie text-esg-blue mr-2"></i> Répartition Sectorielle
+                    </h4>
+                    <div class="w-full h-64 relative">
+                        <canvas id="sectorChart"></canvas>
+                    </div>
+                </div>
+                
+                <!-- Asset Weight Chart (Pie) - NEW REQUEST -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm flex flex-col items-center justify-center">
+                    <h4 class="text-lg font-semibold mb-4 text-slate-700 flex items-center">
+                        <i class="fa-solid fa-chart-simple text-esg-green mr-2"></i> Répartition par Actif
+                    </h4>
+                    <div class="w-full h-64 relative">
+                        <canvas id="assetPieChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Full Asset List Table -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm overflow-hidden">
+                <div class="flex justify-between items-center mb-6">
+                    <h4 class="text-xl font-semibold text-slate-800">Liste Totale des Actifs (15 Valeurs)</h4>
+                    <span class="bg-esg-green/10 text-esg-green text-xs font-bold px-3 py-1 rounded-full border border-esg-green/20">100% Investi</span>
+                </div>
+                
+                <div class="overflow-x-auto">
+                    <table class="min-w-full text-sm text-left text-slate-500">
+                        <thead class="text-xs text-slate-700 uppercase bg-slate-50 border-b border-slate-200">
+                            <tr>
+                                <th scope="col" class="px-6 py-3">Nom de l'Actif</th>
+                                <th scope="col" class="px-6 py-3">Ticker</th>
+                                <th scope="col" class="px-6 py-3">Secteur</th>
+                                <th scope="col" class="px-6 py-3">Pays</th>
+                                <th scope="col" class="px-6 py-3 text-right">Poids (%)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100" id="assetTableBody">
+                            <!-- Populated by JS -->
+                        </tbody>
+                        <tfoot class="bg-slate-50 font-bold text-slate-900">
+                            <tr>
+                                <td colspan="4" class="px-6 py-3 text-right">TOTAL</td>
+                                <td class="px-6 py-3 text-right">100.0%</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <p class="mt-4 text-xs text-slate-400 italic">
+                    *Le portefeuille respecte la contrainte de diversification (Max 15 valeurs). Allocation optimisée selon critères ESG et couple rendement/risque.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Risk & Projections -->
+    <section id="risk" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- SRI Scale -->
+            <div class="mb-16">
+                <h2 class="text-3xl font-serif font-bold text-slate-900 mb-6 text-center">Profil de Risque (SRI)</h2>
+                <div class="flex justify-center items-stretch gap-1 md:gap-2 max-w-3xl mx-auto h-16 md:h-20">
+                    <div class="risk-box flex-1 bg-green-200 rounded text-green-900 flex items-center justify-center border-2 border-transparent">1</div>
+                    <div class="risk-box flex-1 bg-green-300 rounded text-green-900 flex items-center justify-center border-2 border-transparent">2</div>
+                    <div class="risk-box flex-1 bg-yellow-200 rounded text-yellow-900 flex items-center justify-center border-2 border-transparent">3</div>
+                    <div class="risk-box flex-1 bg-yellow-400 rounded text-yellow-900 flex items-center justify-center border-2 border-transparent">4</div>
+                    <div class="risk-box active flex-1 bg-orange-500 rounded text-white flex flex-col items-center justify-center border-4 border-slate-800 z-10 relative">
+                        <span class="text-xl">5</span>
+                        <span class="text-[10px] uppercase tracking-tighter">Notre Fonds</span>
+                    </div>
+                    <div class="risk-box flex-1 bg-orange-600 rounded text-white flex items-center justify-center border-2 border-transparent">6</div>
+                    <div class="risk-box flex-1 bg-red-600 rounded text-white flex items-center justify-center border-2 border-transparent">7</div>
+                </div>
+            </div>
+
+            <div class="border-t border-slate-100 my-12"></div>
+
+            <!-- EGARCH Simulation -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
+                <!-- Technical Specs -->
+                <div class="lg:col-span-1">
+                    <h3 class="text-2xl font-bold text-slate-900 mb-4"><i class="fa-solid fa-microchip text-esg-blue mr-2"></i>Modèle EGARCH</h3>
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200">
+                        <p class="text-sm text-slate-600 mb-4">
+                            Modèle <strong>EGARCH(1,1) Student-t</strong> pour capturer l'asymétrie de volatilité.
+                        </p>
+                        <h4 class="font-semibold text-slate-800 mb-2 text-sm uppercase tracking-wide">Paramètres Estimés</h4>
+                        <ul class="space-y-2 text-sm font-mono text-slate-600">
+                            <li class="flex justify-between border-b border-slate-200 pb-1"><span>Mu (Moyenne)</span><span class="text-slate-900 font-bold">0.1072</span></li>
+                            <li class="flex justify-between border-b border-slate-200 pb-1"><span>Omega (Vol)</span><span class="text-slate-900 font-bold">-0.0286</span></li>
+                            <li class="flex justify-between border-b border-slate-200 pb-1"><span>Alpha (Taille)</span><span class="text-slate-900 font-bold">0.2188</span></li>
+                            <li class="flex justify-between border-b border-slate-200 pb-1"><span>Beta (Persist.)</span><span class="text-slate-900 font-bold">0.9583</span></li>
+                            <li class="flex justify-between pt-1"><span>Nu (Student)</span><span class="text-slate-900 font-bold">19.54</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Simulation Chart -->
+                <div class="lg:col-span-2">
+                    <div class="flex justify-between items-end mb-4">
+                        <h3 class="text-2xl font-bold text-slate-900">Projection Monte Carlo (N=5000)</h3>
+                    </div>
+                    <div class="bg-white p-4 rounded-2xl shadow-lg border border-slate-100 relative">
+                        <canvas id="simulationChart" height="300"></canvas>
+                    </div>
+                    <div class="grid grid-cols-3 gap-4 mt-4 text-center">
+                        <div class="p-3 rounded-lg bg-red-50 border border-red-100">
+                            <p class="text-xs text-red-600 font-bold uppercase">Pessimiste</p>
+                            <p class="text-lg font-bold text-slate-800" id="valPessimiste">--</p>
+                        </div>
+                        <div class="p-3 rounded-lg bg-blue-50 border border-blue-100">
+                            <p class="text-xs text-blue-600 font-bold uppercase">Neutre</p>
+                            <p class="text-lg font-bold text-slate-800" id="valNeutre">--</p>
+                        </div>
+                        <div class="p-3 rounded-lg bg-green-50 border border-green-100">
+                            <p class="text-xs text-green-600 font-bold uppercase">Optimiste</p>
+                            <p class="text-lg font-bold text-slate-800" id="valOptimiste">--</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <section id="contact" class="bg-esg-dark py-16 text-white text-center">
+        <i class="fa-solid fa-leaf text-esg-green text-4xl mb-6"></i>
+        <h2 class="text-3xl font-serif font-bold mb-4">Fonds ESG Avenir Durable</h2>
+        <p class="text-slate-400 mb-8 max-w-lg mx-auto">Simulation pédagogique - Master MBFA Montpellier</p>
+        <div class="border-t border-slate-800 pt-8 text-xs text-slate-500">
+            &copy; 2025 Victor Gonzalez Arroyo
+        </div>
+    </section>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // --- DATASET: 15 ASSETS (Total 100%) ---
+        const assets = [
+            { name: "Schneider Electric", ticker: "SU.PA", sector: "Indus. Verte", country: "France", weight: 12.0 },
+            { name: "Air Liquide", ticker: "AI.PA", sector: "Chimie/H2", country: "France", weight: 10.0 },
+            { name: "NVIDIA Corp", ticker: "NVDA", sector: "Technologie", country: "USA", weight: 9.0 },
+            { name: "ASML Holding", ticker: "ASML", sector: "Technologie", country: "Pays-Bas", weight: 8.0 },
+            { name: "Vestas Wind", ticker: "VWS", sector: "Énergie Renouv.", country: "Danemark", weight: 7.0 },
+            { name: "Microsoft", ticker: "MSFT", sector: "Technologie", country: "USA", weight: 7.0 },
+            { name: "L'Oréal", ticker: "OR.PA", sector: "Conso. Durable", country: "France", weight: 6.0 },
+            { name: "Novo Nordisk", ticker: "NOVO-B", sector: "Santé", country: "Danemark", weight: 6.0 },
+            { name: "Iberdrola", ticker: "IBE", sector: "Utilities", country: "Espagne", weight: 5.0 },
+            { name: "NextEra Energy", ticker: "NEE", sector: "Énergie Renouv.", country: "USA", weight: 5.0 },
+            { name: "Enphase Energy", ticker: "ENPH", sector: "Technologie", country: "USA", weight: 5.0 },
+            { name: "Orsted", ticker: "ORSTED", sector: "Énergie Renouv.", country: "Danemark", weight: 5.0 },
+            { name: "Tesla Inc", ticker: "TSLA", sector: "Automobile", country: "USA", weight: 5.0 },
+            { name: "Alstom", ticker: "ALO.PA", sector: "Transport", country: "France", weight: 5.0 },
+            { name: "STMicroelectronics", ticker: "STMPA", sector: "Technologie", country: "France/IT", weight: 5.0 }
+        ];
+
+        // 1. Populate Table
+        const tbody = document.getElementById('assetTableBody');
+        assets.forEach(asset => {
+            const row = `
+                <tr class="bg-white hover:bg-slate-50 transition border-b border-slate-100 last:border-0">
+                    <td class="px-6 py-3 font-medium text-slate-900">${asset.name}</td>
+                    <td class="px-6 py-3 font-mono text-xs text-slate-500">${asset.ticker}</td>
+                    <td class="px-6 py-3"><span class="bg-slate-100 text-slate-600 px-2 py-1 rounded text-xs">${asset.sector}</span></td>
+                    <td class="px-6 py-3">${asset.country}</td>
+                    <td class="px-6 py-3 text-right font-bold text-esg-green">${asset.weight.toFixed(1)}%</td>
+                </tr>
+            `;
+            tbody.innerHTML += row;
+        });
+
+        // 2. Prepare Chart Data
+        const assetLabels = assets.map(a => a.name);
+        const assetWeights = assets.map(a => a.weight);
+        
+        // Aggregate Sectors for Sector Chart
+        const sectorMap = {};
+        assets.forEach(a => {
+            sectorMap[a.sector] = (sectorMap[a.sector] || 0) + a.weight;
+        });
+        const sectorLabels = Object.keys(sectorMap);
+        const sectorData = Object.values(sectorMap);
+
+        // 3. Render Sector Chart (Doughnut)
+        new Chart(document.getElementById('sectorChart'), {
+            type: 'doughnut',
+            data: {
+                labels: sectorLabels,
+                datasets: [{
+                    data: sectorData,
+                    backgroundColor: ['#0ea5e9', '#10b981', '#f43f5e', '#8b5cf6', '#f59e0b', '#64748b', '#ec4899', '#6366f1'],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { position: 'right', labels: { boxWidth: 10, font: { size: 10 } } } }
+            }
+        });
+
+        // 4. Render NEW Asset Pie Chart (Camembert)
+        new Chart(document.getElementById('assetPieChart'), {
+            type: 'pie', // Camembert requested
+            data: {
+                labels: assetLabels,
+                datasets: [{
+                    data: assetWeights,
+                    backgroundColor: [
+                        '#0f172a', '#1e293b', '#334155', '#475569', // Dark blues
+                        '#10b981', '#34d399', '#6ee7b7', // Greens
+                        '#0ea5e9', '#38bdf8', '#7dd3fc', // Light blues
+                        '#6366f1', '#818cf8', '#a5b4fc', // Indigos
+                        '#f59e0b', '#fbbf24' // Accents
+                    ],
+                    borderWidth: 1,
+                    borderColor: '#ffffff'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => ` ${c.label}: ${c.raw}%` } } }
+            }
+        });
+
+        // 5. Macro Context Chart
+        new Chart(document.getElementById('macroChart'), {
+            type: 'line',
+            data: {
+                labels: ['2020', '2021', '2022', '2023', '2024', '2025'],
+                datasets: [{
+                    label: 'Secteur ESG', data: [100, 115, 110, 125, 140, 155],
+                    borderColor: '#10b981', backgroundColor: 'rgba(16, 185, 129, 0.1)', fill: true, tension: 0.4
+                }, {
+                    label: 'MSCI World', data: [100, 112, 105, 118, 128, 135],
+                    borderColor: '#94a3b8', borderDash: [5, 5], fill: false, tension: 0.4
+                }]
+            },
+            options: { responsive: true, plugins: { legend: { position: 'bottom' } }, scales: { y: { display: false }, x: { grid: { display: false } } } }
+        });
+
+        // 6. Simulation Logic (Visual Approx of Python Output)
+        const horizon = 252;
+        const lbls = Array.from({length: horizon}, (_, i) => i);
+        const pN = lbls.map(i => 100 * Math.pow(1.0004, i));
+        const pO = lbls.map(i => 100 * Math.pow(1.0015, i) + (i/5));
+        const pP = lbls.map(i => 100 * Math.pow(0.9992, i) - (i/10));
+
+        new Chart(document.getElementById('simulationChart'), {
+            type: 'line',
+            data: {
+                labels: lbls,
+                datasets: [
+                    { label: 'Optimiste (97.5%)', data: pO, borderColor: '#10b981', borderWidth: 2, pointRadius: 0, tension: 0.4 },
+                    { label: 'Central (Médiane)', data: pN, borderColor: '#0ea5e9', borderWidth: 3, pointRadius: 0, tension: 0.4 },
+                    { label: 'Pessimiste (2.5%)', data: pP, borderColor: '#ef4444', borderWidth: 2, pointRadius: 0, tension: 0.4 }
+                ]
+            },
+            options: {
+                responsive: true, maintainAspectRatio: false, interaction: { intersect: false, mode: 'index' },
+                plugins: { legend: { display: true }, tooltip: { enabled: true } },
+                scales: { x: { grid: { display: false }, ticks: { display: false } } }
+            }
+        });
+
+        document.getElementById('valOptimiste').innerText = pO[horizon-1].toFixed(2) + " €";
+        document.getElementById('valNeutre').innerText = pN[horizon-1].toFixed(2) + " €";
+        document.getElementById('valPessimiste').innerText = pP[horizon-1].toFixed(2) + " €";
+
+        // Navbar Scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            nav.classList.toggle('bg-white/90', window.scrollY > 50);
+            nav.classList.toggle('shadow-md', window.scrollY > 50);
+            nav.classList.toggle('glass-panel', window.scrollY <= 50);
+        });
+    </script>
+</body>
+</html>
